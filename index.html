@@ -1150,13 +1150,51 @@
       }
     }
 
+    /* Success Modal */
+    .ev-success-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-card);
+      width: 90%;
+      max-width: 320px;
+      z-index: 1000;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      padding: 24px;
+    }
+    
+    .ev-success-modal.open {
+      display: block;
+    }
+    
+    .ev-success-icon {
+      font-size: 48px;
+      color: var(--accent-green);
+      margin-bottom: 12px;
+    }
+    
+    .ev-success-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    
+    .ev-success-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
     /* ============================
    RESPONSIVE
    ============================ */
     @media (max-width: 991px) {
-      .ev-sidebar {
-        display: none;
-      }
 
       .ev-bet-slip {
         display: none;
@@ -1358,53 +1396,59 @@
     <aside class="ev-sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="mobileSidebar"
       style="background: var(--bg-card);">
       <div class="offcanvas-header d-lg-none" style="border-bottom: 1px solid var(--border-color);">
-        <h5 class="offcanvas-title" style="color: var(--text-primary);">Leagues</h5>
+        <h5 class="offcanvas-title">
+          <img src="https://storage.googleapis.com/eurovirtuals/assets/ev_logo_euro_league.png" alt="EuroVirtuals" style="height: 24px; object-fit: contain;">
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
           style="filter: invert(var(--bs-btn-close-invert));"></button>
       </div>
       <div class="offcanvas-body flex-column p-3 p-lg-0">
 
-        <!-- Mobile Exclusive Sidebar Content (Balance & Language) -->
-        <div class="d-lg-none border-bottom pb-3 mb-3">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <div>
-              <div
-                style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary);">
-                Balance</div>
-              <div style="font-size: 16px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.3px;">USD
-                10,000.00</div>
+        <!-- Mobile Exclusive Sidebar Content (Profile & Balance) -->
+        <div class="d-lg-none pb-3 mb-3" style="border-bottom: 1px solid var(--border-color);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 42px; height: 42px; border-radius: 50%; background: var(--bg-odds-btn); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--text-secondary);">
+              <i class="bi bi-person-fill"></i>
             </div>
-            <button class="ev-lang-btn m-0 d-block" style="display: block;">Lang: EN</button>
+            <div>
+              <div style="font-size: 15px; font-weight: 700; color: var(--text-primary);">John Doe</div>
+              <div style="font-size: 11px; color: var(--text-secondary);">ID: 987654321</div>
+            </div>
           </div>
+          <div style="background: var(--bg-odds-btn); border-radius: 12px; padding: 16px; margin-bottom: 12px;">
+            <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 4px;">Balance</div>
+            <div style="font-size: 20px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.5px;">USD 10,000.00</div>
+          </div>
+          <button class="ev-lang-btn w-100" style="padding: 10px;" data-bs-dismiss="offcanvas">Language: EN</button>
         </div>
 
         <div class="ev-sidebar-title d-none d-lg-flex">Leagues</div>
-        <div class="ev-league-item active" onclick="filterLeague('all')">
+        <div class="ev-league-item active" onclick="filterLeague('all')" data-bs-dismiss="offcanvas">
           <span class="ev-league-dot" style="background: var(--sidebar-dot-all)"></span>
           <span class="ev-league-name">All Leagues</span>
           <span class="ev-league-count">28</span>
         </div>
-        <div class="ev-league-item" onclick="filterLeague('en')">
+        <div class="ev-league-item" onclick="filterLeague('en')" data-bs-dismiss="offcanvas">
           <span class="ev-league-dot" style="background: var(--sidebar-dot-en)"></span>
           <span class="ev-league-name">English League</span>
           <span class="ev-league-count">8</span>
         </div>
-        <div class="ev-league-item" onclick="filterLeague('es')">
+        <div class="ev-league-item" onclick="filterLeague('es')" data-bs-dismiss="offcanvas">
           <span class="ev-league-dot" style="background: var(--sidebar-dot-es)"></span>
           <span class="ev-league-name">Spanish League</span>
           <span class="ev-league-count">6</span>
         </div>
-        <div class="ev-league-item" onclick="filterLeague('it')">
+        <div class="ev-league-item" onclick="filterLeague('it')" data-bs-dismiss="offcanvas">
           <span class="ev-league-dot" style="background: var(--sidebar-dot-it)"></span>
           <span class="ev-league-name">Italian League</span>
           <span class="ev-league-count">6</span>
         </div>
-        <div class="ev-league-item" onclick="filterLeague('de')">
+        <div class="ev-league-item" onclick="filterLeague('de')" data-bs-dismiss="offcanvas">
           <span class="ev-league-dot" style="background: var(--sidebar-dot-de)"></span>
           <span class="ev-league-name">German League</span>
           <span class="ev-league-count">4</span>
         </div>
-        <div class="ev-league-item" onclick="filterLeague('fr')">
+        <div class="ev-league-item" onclick="filterLeague('fr')" data-bs-dismiss="offcanvas">
           <span class="ev-league-dot" style="background: var(--sidebar-dot-fr)"></span>
           <span class="ev-league-name">French League</span>
           <span class="ev-league-count">4</span>
@@ -1755,7 +1799,7 @@
           <span class="ev-potential-label">Potential win</span>
           <span class="ev-potential-amount" id="potentialWinDesktop">334.00</span>
         </div>
-        <button class="ev-place-bet-btn">PLACE BET</button>
+        <button class="ev-place-bet-btn" onclick="placeBet()">PLACE BET</button>
       </div>
     </aside>
 
@@ -1820,7 +1864,31 @@
           style="margin-left:auto;background:none;border:none;font-size:20px;color:var(--text-muted);cursor:pointer;">✕</button>
       </div>
       <div style="padding: 16px;">
-        <p style="color:var(--text-secondary);font-size:12px;">Profile details not available.</p>
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--bg-odds-btn); display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--text-secondary);">
+            <i class="bi bi-person-fill"></i>
+          </div>
+          <div>
+            <div style="font-size: 16px; font-weight: 700; color: var(--text-primary);">John Doe</div>
+            <div style="font-size: 12px; color: var(--text-secondary);">ID: 987654321</div>
+          </div>
+        </div>
+        
+        <div style="background: var(--bg-odds-btn); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+          <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 4px;">Available Balance</div>
+          <div style="font-size: 24px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.5px;">USD 10,000.00</div>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <button class="ev-lang-btn" style="width: 100%; text-align: left; padding: 12px; font-size: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <span><i class="bi bi-wallet2" style="margin-right: 8px;"></i> Deposit</span>
+            <i class="bi bi-chevron-right"></i>
+          </button>
+          <button class="ev-lang-btn" style="width: 100%; text-align: left; padding: 12px; font-size: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <span><i class="bi bi-cash-stack" style="margin-right: 8px;"></i> Withdraw</span>
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1886,8 +1954,16 @@
         <span class="ev-potential-label">Potential win</span>
         <span class="ev-potential-amount" id="potentialWinMobilePanel">334.00</span>
       </div>
-      <button class="ev-place-bet-btn">PLACE BET</button>
+      <button class="ev-place-bet-btn" onclick="placeBet()">PLACE BET</button>
     </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div class="ev-success-modal" id="betSuccessModal">
+    <div class="ev-success-icon"><i class="bi bi-check-circle-fill"></i></div>
+    <div class="ev-success-title">Bet Placed!</div>
+    <div class="ev-success-text">Your bet has been placed successfully. Good luck!</div>
+    <button class="ev-place-bet-btn" onclick="closeSuccessModal()">AWESOME</button>
   </div>
 
   <!-- GLOBAL BACKDROP -->
@@ -1961,6 +2037,23 @@
     // ============================
     // TOGGLE LEAGUE
     // ============================
+    function filterLeague(league) {
+      document.querySelectorAll('.ev-league-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('onclick') === `filterLeague('${league}')`) {
+          item.classList.add('active');
+        }
+      });
+      
+      if (league === 'all') {
+        document.querySelectorAll('.ev-league-section').forEach(sec => sec.style.display = 'block');
+      } else {
+        document.querySelectorAll('.ev-league-section').forEach(sec => {
+          sec.style.display = sec.getAttribute('data-league') === league ? 'block' : 'none';
+        });
+      }
+    }
+
     function toggleLeague(header) {
       const section = header.closest('.ev-league-section');
       const fixtureList = section.querySelector('.ev-fixture-list');
@@ -2098,8 +2191,32 @@
       document.querySelectorAll('.ev-shared-modal, .ev-slip-panel').forEach(m => m.classList.remove('open'));
       if (window.innerWidth >= 992) { let bs = document.querySelector('.ev-bet-slip'); if (bs) bs.style.display = ''; }
       document.getElementById('globalBackdrop').classList.remove('open');
+      document.getElementById('globalBackdrop').style.zIndex = '94'; // reset
+      document.getElementById('betSuccessModal').classList.remove('open');
       document.querySelectorAll('.ev-nav-item').forEach(nav => nav.classList.remove('active'));
       document.querySelector('.ev-nav-item').classList.add('active');
+    }
+
+    function placeBet() {
+      if (selections.length === 0) return;
+      document.getElementById('betSuccessModal').classList.add('open');
+      document.getElementById('globalBackdrop').classList.add('open');
+      document.getElementById('globalBackdrop').style.zIndex = '999';
+      
+      selections.length = 0;
+      stake = 100;
+      updateSlipUI();
+      renderSlipItems();
+      
+      if (window.innerWidth < 992) {
+        document.getElementById('mobileSlipPanel').classList.remove('open');
+      }
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('betSuccessModal').classList.remove('open');
+      document.getElementById('globalBackdrop').classList.remove('open');
+      document.getElementById('globalBackdrop').style.zIndex = '94';
     }
 
     // ============================
