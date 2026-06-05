@@ -610,7 +610,7 @@
       display: flex;
       justify-content: flex-end;
       padding: 6px 16px 0;
-      gap: 0;
+      gap: 6px;
     }
 
     .ev-odds-col-label {
@@ -621,8 +621,10 @@
       color: var(--text-secondary);
     }
 
-    /* FIXTURE ROW */
     .ev-fixture {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       border-top: 1px solid var(--border-color);
       padding: 10px 16px;
     }
@@ -631,7 +633,7 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
-      margin-bottom: 8px;
+      flex: 1;
     }
 
     .ev-team-row {
@@ -1243,6 +1245,10 @@
       .ev-league-header {
         padding: 10px 12px;
       }
+
+      .ev-odds-header {
+        padding: 6px 12px 0;
+      }
     }
 
     /* Collapsed league sections */
@@ -1258,7 +1264,6 @@
 
 <body>
 
-  <!-- HEADER -->
   <header class="ev-header">
     <button class="ev-icon-btn d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar"
       style="background:transparent; border:none; color: var(--text-primary); font-size:24px; padding: 0;">
@@ -1291,8 +1296,6 @@
       <div class="ev-balance-amount">USD 10,000.00</div>
       <div class="ev-balance-label">Balance</div>
     </div>
-
-    <button class="ev-lang-btn ms-2 d-none d-lg-block">Lang</button>
 
     <div class="d-flex align-items-center gap-1 ms-auto ms-lg-2">
       <button class="ev-icon-btn notif" onclick="showModal('notifModal')"><i class="bi bi-bell-fill"></i></button>
@@ -2023,9 +2026,6 @@
       updateSlipUI();
     }
 
-    // ============================
-    // SELECT ODDS
-    // ============================
     function selectOdds(btn, match, market, pick, odd) {
       const fixture = btn.closest('.ev-fixture');
       const allBtns = fixture.querySelectorAll('.ev-odds-btn');
@@ -2035,7 +2035,6 @@
 
       if (!wasSelected) {
         btn.classList.add('selected');
-        // Remove any existing selection for this match
         const idx = selections.findIndex(s => s.match.startsWith(match.split(' · ')[0]));
         if (idx > -1) selections.splice(idx, 1);
         selections.push({ match: `${match} · ${market}`, pick, odd });
@@ -2064,9 +2063,6 @@
       document.getElementById('slipItemsMobile').innerHTML = html_items;
     }
 
-    // ============================
-    // MODALS
-    // ============================
     function showModal(modalId) {
       // Close all modals first
       document.querySelectorAll('.ev-shared-modal, .ev-slip-panel').forEach(m => m.classList.remove('open'));
